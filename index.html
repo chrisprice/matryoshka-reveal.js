@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>git, bitcoin and matryoshka dolls</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="'A set of matryoshkas consist of a wooden figure which separates, top from bottom, to reveal a smaller figure of the same sort inside, which has, in turn, another figure inside of it, and so on.' Did you know that nestled deep within a set of matryoshka dolls lies one of the fundamental principles of git, the most popular way of sharing code on the net, and bitcoin, the most popular way of acquiring illicit substances on the net?">
+		<meta name="author" content="Chris Price">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -37,24 +37,304 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h1>git, Bitcoin and matryoshka dolls</h1>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>Created by <a href="http://scottlogic.com/blog/cprice">Chris Price</a> / <a href="http://twitter.com/100pxls">@100pxls</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+					<h2>
+						<a class="test" href="http://git-scm.com/">
+							<img width="606" height="254" src="http://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" alt="git logo">
+						</a>
+					</h2>
+					<ul>
+						<li>Version control system</li>
+						<li>Open source software</li>
+						<li>Sequence of commits (containing files)</li>
+					</ul>
 				</section>
+				
+				<section>
+					<h2>The first git commit</h2>
+					<pre><code class="no-highlight">
+$ git cat-file -p e83c5163316f89bfbde7d9ab23ca2e25604af290
+tree 2b5bfdf7798569e0b59b16eb9602d5fa572d6038
+author Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt; 1112911993 -0700
+committer Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt; 1112911993 -0700
+
+Initial revision of "git", the information manager from hell
+					</code></pre>
+				</section>	
+				
+				<section>
+					<h2>The files from the first commit</h2>
+					<pre><code class="no-highlight">
+$ git cat-file -p 2b5bfdf7798569e0b59b16eb9602d5fa572d6038
+100664 blob a6bba79ba1f46a1bbf7773449c3bd2bb9bf48e8b    Makefile
+100664 blob 27577f76849c09d3405397244eb3d8ae1d11b0f3    README
+100664 blob 98a32a9ad39883c6d05a000a68511d4b1ee2b3c7    cache.h
+100664 blob 74a0a234dd346fff51c773aa57d82fc4b83a8557    cat-file.c
+100664 blob 840307af0cfaab31555795ce7175d5e9c9f981a0    commit-tree.c
+100664 blob 25dc13fe101b219f74007f3194b787dd99e863da    init-db.c
+100664 blob c924a6e0fc4c36bad6f23cb87ee59518c771f936    read-cache.c
+100664 blob 1b47742d8cbc0d98903777758b7b519980e7499e    read-tree.c
+100664 blob b8522886a15db861508fb6d03d4d88d6de912a4b    show-diff.c
+100664 blob 5085a5cb53ee52e1886ff6d46c609bdb2fc6d6cd    update-cache.c
+100664 blob 921f981353229db0c56103a52609d35aff16f41b    write-tree.c
+					</code></pre>
+				</section>					
+				
+				<section>
+					<h2>The contents of the README file</h2>
+					<pre><code class="no-highlight">
+$ git cat-file -p 27577f76849c09d3405397244eb3d8ae1d11b0f3
+
+	GIT - the stupid content tracker
+
+"git" can mean anything, depending on your mood.
+
+ - random three-letter combination that is pronounceable, and not
+   actually used by any common UNIX command.  The fact that it is a
+   mispronounciation of "get" may or may not be relevant.
+ - stupid. contemptible and despicable. simple. Take your pick from the
+   dictionary of slang.
+ - "global information tracker": you're in a good mood, and it actually
+   works for you. Angels sing, and a light suddenly fills the room. 
+ - "goddamn idiotic truckload of sh*t": when it breaks
+
+This is a stupid (but extremely fast) directory content manager.  It
+doesn't do a whole lot, but what it _does_ do is track directory
+contents efficiently. 
+
+There are two object abstractions: the "object database", and the
+"current directory cache".
+
+	The Object Database (SHA1_FILE_DIRECTORY)
+
+The object database is literally just a content-addressable collection
+of objects.  All objects are named by their content, which is
+approximated by the SHA1 hash of the object itself.  Objects may refer
+to other objects (by referencing their SHA1 hash), and so you can build
+up a hierarchy of objects. 
+
+There are several kinds of objects in the content-addressable collection
+database.  They are all in deflated with zlib, and start off with a tag
+of their type, and size information about the data.  The SHA1 hash is
+always the hash of the _compressed_ object, not the original one.
+
+In particular, the consistency of an object can always be tested
+independently of the contents or the type of the object: all objects can
+be validated by verifying that (a) their hashes match the content of the
+file and (b) the object successfully inflates to a stream of bytes that
+forms a sequence of <ascii tag without space> + <space> + <ascii decimal
+size> + <byte\0> + <binary object data>. 
+
+BLOB: A "blob" object is nothing but a binary blob of data, and doesn't
+refer to anything else.  There is no signature or any other verification
+of the data, so while the object is consistent (it _is_ indexed by its
+sha1 hash, so the data itself is certainly correct), it has absolutely
+no other attributes.  No name associations, no permissions.  It is
+purely a blob of data (ie normally "file contents"). 
+
+TREE: The next hierarchical object type is the "tree" object.  A tree
+object is a list of permission/name/blob data, sorted by name.  In other
+words the tree object is uniquely determined by the set contents, and so
+two separate but identical trees will always share the exact same
+object. 
+
+Again, a "tree" object is just a pure data abstraction: it has no
+history, no signatures, no verification of validity, except that the
+contents are again protected by the hash itself.  So you can trust the
+contents of a tree, the same way you can trust the contents of a blob,
+but you don't know where those contents _came_ from. 
+
+Side note on trees: since a "tree" object is a sorted list of
+"filename+content", you can create a diff between two trees without
+actually having to unpack two trees.  Just ignore all common parts, and
+your diff will look right.  In other words, you can effectively (and
+efficiently) tell the difference between any two random trees by O(n)
+where "n" is the size of the difference, rather than the size of the
+tree. 
+
+Side note 2 on trees: since the name of a "blob" depends entirely and
+exclusively on its contents (ie there are no names or permissions
+involved), you can see trivial renames or permission changes by noticing
+that the blob stayed the same.  However, renames with data changes need
+a smarter "diff" implementation. 
+
+CHANGESET: The "changeset" object is an object that introduces the
+notion of history into the picture.  In contrast to the other objects,
+it doesn't just describe the physical state of a tree, it describes how
+we got there, and why. 
+
+A "changeset" is defined by the tree-object that it results in, the
+parent changesets (zero, one or more) that led up to that point, and a
+comment on what happened. Again, a changeset is not trusted per se:
+the contents are well-defined and "safe" due to the cryptographically
+strong signatures at all levels, but there is no reason to believe that
+the tree is "good" or that the merge information makes sense. The
+parents do not have to actually have any relationship with the result,
+for example.
+
+Note on changesets: unlike real SCM's, changesets do not contain rename
+information or file mode chane information.  All of that is implicit in
+the trees involved (the result tree, and the result trees of the
+parents), and describing that makes no sense in this idiotic file
+manager.
+
+TRUST: The notion of "trust" is really outside the scope of "git", but
+it's worth noting a few things. First off, since everything is hashed
+with SHA1, you _can_ trust that an object is intact and has not been
+messed with by external sources. So the name of an object uniquely
+identifies a known state - just not a state that you may want to trust.
+
+Furthermore, since the SHA1 signature of a changeset refers to the
+SHA1 signatures of the tree it is associated with and the signatures
+of the parent, a single named changeset specifies uniquely a whole
+set of history, with full contents. You can't later fake any step of
+the way once you have the name of a changeset.
+
+So to introduce some real trust in the system, the only thing you need
+to do is to digitally sign just _one_ special note, which includes the
+name of a top-level changeset.  Your digital signature shows others that
+you trust that changeset, and the immutability of the history of
+changesets tells others that they can trust the whole history.
+
+In other words, you can easily validate a whole archive by just sending
+out a single email that tells the people the name (SHA1 hash) of the top
+changeset, and digitally sign that email using something like GPG/PGP.
+
+In particular, you can also have a separate archive of "trust points" or
+tags, which document your (and other peoples) trust.  You may, of
+course, archive these "certificates of trust" using "git" itself, but
+it's not something "git" does for you. 
+
+Another way of saying the same thing: "git" itself only handles content
+integrity, the trust has to come from outside. 
+
+	Current Directory Cache (".dircache/index")
+
+The "current directory cache" is a simple binary file, which contains an
+efficient representation of a virtual directory content at some random
+time.  It does so by a simple array that associates a set of names,
+dates, permissions and content (aka "blob") objects together.  The cache
+is always kept ordered by name, and names are unique at any point in
+time, but the cache has no long-term meaning, and can be partially
+updated at any time. 
+
+In particular, the "current directory cache" certainly does not need to
+be consistent with the current directory contents, but it has two very
+important attributes:
+
+ (a) it can re-generate the full state it caches (not just the directory
+     structure: through the "blob" object it can regenerate the data too)
+
+     As a special case, there is a clear and unambiguous one-way mapping
+     from a current directory cache to a "tree object", which can be
+     efficiently created from just the current directory cache without
+     actually looking at any other data.  So a directory cache at any
+     one time uniquely specifies one and only one "tree" object (but
+     has additional data to make it easy to match up that tree object
+     with what has happened in the directory)
+    
+
+and
+
+ (b) it has efficient methods for finding inconsistencies between that
+     cached state ("tree object waiting to be instantiated") and the
+     current state. 
+
+Those are the two ONLY things that the directory cache does.  It's a
+cache, and the normal operation is to re-generate it completely from a
+known tree object, or update/compare it with a live tree that is being
+developed.  If you blow the directory cache away entirely, you haven't
+lost any information as long as you have the name of the tree that it
+described. 
+
+(But directory caches can also have real information in them: in
+particular, they can have the representation of an intermediate tree
+that has not yet been instantiated.  So they do have meaning and usage
+outside of caching - in one sense you can think of the current directory
+cache as being the "work in progress" towards a tree commit).
+
+					</code></pre>
+				</section>				
+				
+				<section>
+					<h2>Another git commit</h2>
+					<pre><code class="no-highlight">
+$ git cat-file -p 8bc9a0c769ac1df7820f2dbf8f7b7d64835e3c68
+tree 4f856748145b27bc669a98cd4d66574dfd01b083
+parent e83c5163316f89bfbde7d9ab23ca2e25604af290
+author Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt; 1112912170 -0700
+committer Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt; 1112912170 -0700
+
+Add copyright notices.
+
+The tool interface sucks (especially "committing" information, which is just
+me doing everything by hand from the command line), but I think this is in
+theory actually a viable way of describing the world. So copyright it.
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>
+						<a class="test" href="https://en.bitcoin.it/">
+							<img width="612" height="128" src="https://en.bitcoin.it/w/images/en/c/cb/BC_Logotype.png" alt="bitcoin logo">
+						</a>
+					</h2>
+					<ul>
+						<li>Cryptographic currency</li>
+						<li>Open source software</li>
+						<li>Sequence of blocks (containing transactions)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>The <i>genesis</i> block</h2>
+					<pre><code>
+{
+  "hash":"000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+  "ver":1,
+  "prev_block":"0000000000000000000000000000000000000000000000000000000000000000",
+  "mrkl_root":"4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+  "time":1231006505,
+  "bits":486604799,
+  "nonce":2083236893,
+  "n_tx":1,
+  "size":285,
+  "tx":[ /* transactions removed */ ],
+  "mrkl_tree":[
+    "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"
+  ]
+}
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Another Bitcoin block</h2>
+					<pre><code>
+{
+  "hash":"00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048",
+  "ver":1,
+  "prev_block":"000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+  "mrkl_root":"0e3e2357e806b6cdb1f70b54c3a3a17b6714ee1f0e68bebb44a74b1efd512098",
+  "time":1231469665,
+  "bits":486604799,
+  "nonce":2573394689,
+  "n_tx":1,
+  "size":215,
+  "tx":[ /* transactions removed */ ],
+  "mrkl_tree":[
+    "0e3e2357e806b6cdb1f70b54c3a3a17b6714ee1f0e68bebb44a74b1efd512098"
+  ]
+}
+					</code></pre>
+				</section>
+			
+
 
 				<!-- Example of nested vertical slides -->
 				<section>
@@ -360,7 +640,7 @@ function linkify( selector ) {
 				history: true,
 				center: true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				theme: 'serif', // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Optional libraries used to extend on reveal.js
