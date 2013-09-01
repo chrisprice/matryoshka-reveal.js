@@ -43,6 +43,10 @@
 					<p>
 						<small><a href="http://scottlogic.com/blog/cprice">Chris Price</a> / <a href="http://twitter.com/100pxls">@100pxls</a></small>
 					</p>
+					<aside class="notes" data-markdown>
+						Chris Price
+						Hopefully I can teach you about matryoshka dolls, maybe even git/bitcoin but most likely just the limits of metaphore stretching!
+					</aside>
 				</section>
 				
 				<section>
@@ -58,11 +62,23 @@
 							<li>Distributed version control system</li>
 							<li>Hugely popular with open source projects</li>
 						</ul>
+						<aside class="notes" data-markdown>
+							*Git is a DVCS
+							*As a developer I've witnessed it unstoppable rise in popularity.
+							*Especially in open source, helped no end by GitHub.
+							*But as widespread as it is, it's still widely regarded as impenatrable by many
+							*At it's very core it is based on a simple idea though
+						</aside>
 					</section>		
 
 					<section>
 						<h2>Sequence of commits</h2>
 						<h3>(containing files)</h3>
+						<aside class="notes" data-markdown>
+							*All a version control system is is a sequence of snapshots of a folder of files
+							*You can replicate much of the functionality by saving a file with a timestamp after every change
+							*Let's look at one of these snapshots, called a commit	
+						</aside>
 					</section>
 						
 					<section>
@@ -74,6 +90,14 @@ committer Linus Torvalds &lt;torvalds@ppc970.osdl.org&gt; 1112911993 -0700
 
 Initial revision of "git", the information manager from hell
 						</code></pre>
+						<aside class="notes" data-markdown>
+							*Immediately you can see how intimidating it looks
+							*But look beyond that and you can see this commit is identified by the 40 character id starting e83c
+							*And the file snapshot is stored in another object identified by the other 40 character id starting 2b5b
+							*The rest is just metadata, including a message describing the change.
+							*This is actually the commit that contained the first ever version of git
+							*And you can see that it's creator Linus Torvalds shares the popular opinion of git
+						</aside>
 					</section>	
 					
 					<!--<section>
@@ -282,6 +306,12 @@ The tool interface sucks (especially "committing" information, which is just
 me doing everything by hand from the command line), but I think this is in
 theory actually a viable way of describing the world. So copyright it.
 					</code></pre>
+						<aside class="notes" data-markdown>
+							*This is the second commit ever made, you'll spot Linus is getting more specific in his critique
+							*But look a bit harder and see the extra field referencing parent
+							*That hash (again starting e83c) is the identifier of the previous commit
+							*This is what links the commits together into a sequence
+						</aside>
 					</section>
 					
 					<section>
@@ -375,6 +405,14 @@ theory actually a viable way of describing the world. So copyright it.
 								<g transform="translate(41.0,-96.0)"></g>
 							</g>
 						</svg>
+
+						<aside class="notes" data-markdown>
+							*And here we see the frightening limits of my artistic ability
+							*The first commit we saw is on the right (no previous/parent reference)
+							*The second commit is in the middle with a reference to the first.
+							*And the third is just there to show how this pattern continues.
+							*And that's all there is to it!
+						</aside>
 					</section>
 					
 				</section>
@@ -393,11 +431,24 @@ theory actually a viable way of describing the world. So copyright it.
 							<li>Distributed cryptographic currency</li>
 							<li>Hugely popular with purchasers of ilicit substances</li>
 						</ul>
+						<aside class="notes" data-markdown>
+							*bitcoin is a distributed cryto-currency
+							*it's a bit newer than git, and in fact uses git for hosting it's source code
+							*probably most famous for alternating headlines of people making and losing lots of cash and speculation of if being the next big thing
+							*2,000x smaller than UK, 10,000x smaller than China 
+							*Currently still a very niche concept, despite the headlines.
+							*Very similar to git, seemingly impenitrable from the outside but actually based around a simple idea
+						</aside>
 					</section>
 				
 					<section>
 						<h2>Sequence of blocks</h2>
 						<h3>(containing transactions)</h3>
+						<aside class="notes" data-markdown>
+							*As strange as it may seem the hardest part of bitcoin isn't making transactions but keeping a ledger of them
+							*Instead of storing each transaction as a separate item in the sequence, bitcoin groups them in 10min chunks called blocks
+							*The ledger is therefore a sequence of these blocks
+						</aside>
 					</section>
 				
 					<section>
@@ -418,6 +469,12 @@ theory actually a viable way of describing the world. So copyright it.
   ]
 }
 						</code></pre>
+						<aside class="notes" data-markdown>
+							*Here is the first ever block, known as the genesis block
+							*The block is identified by the hash beginning 0s 19d6
+							*The prev_block key is non-optional but all 0s is special cased
+							*The rest is metadata apart from the tx (transaction) list
+						</aside>
 					</section>
 					
 					<section>
@@ -438,6 +495,12 @@ theory actually a viable way of describing the world. So copyright it.
   ]
 }
 						</code></pre>
+						<aside class="notes" data-markdown>
+							*Here's the second block
+							*Very similar to the first except this time the prev_block contains a real value
+							*This matches the hash of the first block
+							*And obviously the list of transactions are different (the mrkl_root gives this away)
+						</aside>
 					</section>	
 													
 					<section>
@@ -531,6 +594,11 @@ theory actually a viable way of describing the world. So copyright it.
 								<g transform="translate(41.0,-96.0)"></g>
 							</g>
 						</svg>
+						<aside class="notes" data-markdown>
+							*Again my frightening skills
+							*But hopefully you can see how we've ended up with the same pattern
+							*First block on the right, second in the middle and the one on the right for show
+						</aside>
 					</section>
 					
 				</section>
@@ -645,7 +713,10 @@ theory actually a viable way of describing the world. So copyright it.
 				
 				<section>
 					<section>
-						<h1>Tamper-proof sequences</h1>
+						<h1>So???</h1>
+						<aside class="notes" data-markdown>
+							*So matryoshka dolls have the same pattern as git and bitcoin but why does that matter?
+						</aside>
 					</section>
 					
 					<section>
@@ -919,6 +990,16 @@ theory actually a viable way of describing the world. So copyright it.
 								<g transform="translate(41.0,-96.0)"></g>
 							</g>
 						</svg>
+						<aside class="notes" data-markdown>
+							*Because you can hold onto matryoshka dolls!
+							*One thing I didn't mention about git, bitcoin and sequences in general is that order matters
+							*I know from personal experience git history graphs look complicated enough without them re-arranging themselves
+							*And in bitcoin you could easily end up the equivalent of overdrawn
+							*The hidden trick all 3 systems demonstrate is a secure representation of a sequence.
+							*If I hold the outside doll, I know that no one can manipulate any of the dolls inside it.
+							*By extension if I have the latest bitcoin block or git commit, 
+							* I know that no one can change any of the previous blocks or commits without me noticing.
+						</aside>
 					</section>
 					
 				</section>
